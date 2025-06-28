@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const allowedOrigin = ["http://localhost:5173"];
+const allowedOrigin = "*";
 
 //* Middlewares....
 app.use(express.json({ limit: "4mb" }));
@@ -48,6 +48,10 @@ app.use(cookieParser());
 //* routes...
 app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
+
+app.use("/server/active", (req, res) => {
+  res.send("Hello User");
+});
 
 if (process.env.NODE_ENV !== "production") {
   const port = process.env.PORT || 5000;

@@ -34,6 +34,9 @@ export const userRegister = async (req, res) => {
 
     res.cookie("userToken", token, {
       httpOnly: true,
+      secure: process.env.NODE_ENV == "production",
+      sameSite: process.env.NODE_ENV == "production" ? none : "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(201).json({
       message: "User registered successfully.",
@@ -73,6 +76,9 @@ export const userLogin = async (req, res) => {
 
     res.cookie("userToken", token, {
       httpOnly: true,
+      secure: process.env.NOD_ENV == "production",
+      sameSite: process.env.NOD_ENV == "production" ? none : "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(201).json({
       message: "User login successfully.",

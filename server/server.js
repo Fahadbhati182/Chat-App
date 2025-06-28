@@ -49,7 +49,11 @@ app.use(cookieParser());
 app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
 
-const port = process.env.PORT || 5000;
-server.listen(port, () => {
-  console.log(`Server is running on port${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  const port = process.env.PORT || 5000;
+  server.listen(port, () => {
+    console.log(`Server is running on port${port}`);
+  });
+}
+
+export default server;

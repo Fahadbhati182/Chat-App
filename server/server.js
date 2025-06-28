@@ -42,7 +42,12 @@ const allowedOrigin = "*";
 //* Middlewares....
 app.use(express.json({ limit: "4mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: allowedOrigin, credentials: true }));
+app.use(
+  cors({
+    origin: "https://chat-app-final-frontend-tawny.vercel.app",
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 //* routes...
